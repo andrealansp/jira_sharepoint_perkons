@@ -1,6 +1,7 @@
 import time
 from typing import List
 
+import requests.exceptions
 from office365.runtime.auth.user_credential import UserCredential
 from office365.sharepoint.client_context import ClientContext
 
@@ -96,5 +97,16 @@ class SharepointHandler:
                 itens.set_property('RESPONSAVEL_x0020_DA_x0020_AFERI', chamado.get("RESPONSAVEL_x0020_DA_x0020_AFERI"))
                 itens.update()
                 ctx.execute_query()
-            except Exception as e:
+                time.sleep(0.2)
+            except ConnectionAbortedError as e:
                 print(str(e))
+                continue
+            except ConnectionError as e:
+                print(str(e))
+                continue
+            except ConnectionRefusedError as e:
+                print(str(e))
+                continue
+            except requests.exceptions.HTTPError as e:
+                print(str(e))
+                continue

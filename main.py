@@ -24,25 +24,26 @@ diferenca_chamados_sp = retorna_chamados_diferentes(
 
 if diferenca_chamados_jira:
     lista_sharepoint.add_item_list(diferenca_chamados_jira)
-    mensagem = f"Adicionado {len(diferenca_chamados_jira)} chamados a lista do Sharepoint!\n"
+    mensagem = f"Adicionado {len(diferenca_chamados_jira)} chamados a lista do Sharepoint! - "
 else:
-    mensagem += f"Sem chamados para adicionar na lista do Sharepoint! \n"
+    mensagem += f"Sem chamados para adicionar na lista do Sharepoint!  - "
     print("Sem chamados para adicionar na lista!")
 
 if diferenca_chamados_sp:
     lista_sharepoint.remove_item_list([""])
-    mensagem += f"Foram removidos {len(diferenca_chamados_sp)} chamados da lista do Sharepoint! \n"
+    mensagem += f"Foram removidos {len(diferenca_chamados_sp)} chamados da lista do Sharepoint!  - "
 else:
-    mensagem += f"Sem chamados para excluir na lista do Sharepoint! \n"
+    mensagem += f"Sem chamados para excluir na lista do Sharepoint!  - "
     print("Sem chamados para excluir!")
 
 chamados_sharepoint = lista_sharepoint.get_list_dict()
 if chamados_sharepoint:
     chamados_desatualizados = verifica_diferenca(chamados_sharepoint, chamados_jira)
-    mensagem += f" {len(chamados_desatualizados)} foram atualizados na lista do Sharepoint! \n"
+    print(len(chamados_desatualizados))
+    mensagem += f" {len(chamados_desatualizados)} foram atualizados na lista do Sharepoint!  - "
     lista_sharepoint.update_item_list(chamados_desatualizados)
 else:
-    mensagem += f"Não há mudanças na lista do Sharepoint!\n"
+    mensagem += f"Não há mudanças na lista do Sharepoint!  - "
     print("Sem chamados para atualizar a lista!")
 
 
@@ -51,10 +52,10 @@ def enviar_email_robo(mensagem) -> None:
     email.definir_conteudo(
         topico="Robô Metrologia",
         email_remetente="andre@andrealves.eng.br",
-        lista_contatos=[
-            "carolina.s@perkons.com"
-            "a.alves@perkons.com"
-        ],
+        lista_contatos=LISTA_EMAILS,
         conteudo_email=mensagem,
     )
     email.enviar_email(5)
+
+
+enviar_email_robo(mensagem)

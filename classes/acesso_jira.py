@@ -49,7 +49,7 @@ class AcessoJira:
                     "UTILIZAR_x0020_CENTRO_x0020_DE_x": handling_fields("customfield_10122", chamado.raw),
                     "QUANTIDADE_x0020_DE_x0020_FAIXAS": handling_fields("customfield_10160", chamado.raw),
                     "SERIE_x0020_DO_x0020_EQUIPAMENTO": handling_fields("customfield_10134", chamado.raw),
-                    "TIPO_x0020_DE_x0020_EQUIPAMENTO": handling_fields("customfield_10334", chamado.raw),
+                    "TIPO_x0020_DE_x0020_EQUIPAMENTO": handling_fields("customfield_10334", chamado.raw).replace("-", ""),
                     "CATEGORIA_x0020_DO_x0020_EQUIPAM": handling_fields("customfield_10703", chamado.raw).replace("-", ""),
                     "DATA_x0020_DA_x0020_AFERICAO": data_formatada(handling_fields("customfield_10336", chamado.raw)),
                     "RESPONSAVEL_x0020_DA_x0020_AFERI": handling_fields("customfield_10447", chamado.raw).replace("-", ""),
