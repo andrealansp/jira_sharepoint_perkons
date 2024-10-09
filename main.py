@@ -48,7 +48,7 @@ else:
 
 
 def enviar_email_robo(mensagem) -> None:
-    email = Emailer("andre@andrealves.eng.br", "andre-28")
+    email = Emailer(DADOS_EMAILS[0],DADOS_EMAILS[1])
     email.definir_conteudo(
         topico="Robô Metrologia",
         email_remetente="andre@andrealves.eng.br",
