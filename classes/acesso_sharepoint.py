@@ -1,3 +1,4 @@
+import os
 import time
 from typing import List
 
@@ -5,10 +6,12 @@ import requests.exceptions
 from office365.runtime.auth.user_credential import UserCredential
 from office365.sharepoint.client_context import ClientContext
 
-from config import *
+from dotenv import load_dotenv
 
-ctx_auth = UserCredential(USUARIO_365, SENHA)
-ctx = ClientContext(SHAREPOINT_SITE).with_credentials(ctx_auth)
+load_dotenv()
+
+ctx_auth = UserCredential(os.getenv("USUARIO_365"), os.getenv("SENHA"))
+ctx = ClientContext(os.getenv("SHAREPOINT_SITE")).with_credentials(ctx_auth)
 
 
 class SharepointHandler:

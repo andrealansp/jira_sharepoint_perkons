@@ -32,7 +32,8 @@ class AcessoJira:
 
         lista_chamados: List = []
 
-        for chamado in issues:
+        for K,V in issues:
+            print(K, V)
             try:
                 lista_chamados.append({
                     "CHAVE": handling_fields("issuekey", chamado.raw),
